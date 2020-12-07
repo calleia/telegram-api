@@ -4,6 +4,7 @@ import http.client
 import json
 from argparse import ArgumentParser
 
+
 class Service:
     def send(self, chat_id, message, token):
         data = {'chat_id': chat_id, 'text': message}
