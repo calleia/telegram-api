@@ -2,7 +2,7 @@
 
 import http.client
 import json
-
+from argparse import ArgumentParser
 
 class Service:
     def send(self, chat_id, message, token):
@@ -18,3 +18,22 @@ class Service:
 
         response = connection.getresponse()
         return response.read().decode()
+
+if __name__ == '__main__':
+    parser = ArgumentParser()
+
+    parser.add_argument("-i", "--id", action="store", dest="chat_id", help="Chat ID")
+
+    parser.add_argument("-m", "--message", action="store", dest="message", help="Text message")
+
+    parser.add_argument("-t", "--token", action="store", dest="token", help="Bot's API token")
+
+    args = parser.parse_args()
+
+    if args.chat_id and args.message and args.token:
+        service = Service()
+        response = service.send(chat_id=args.chat_id, message=args.message, token=args.token)
+        print(response)
+    else:
+        error = {'ok': False, 'error_code': -1, 'description': 'Invalid arguments'}
+        print(error)
