@@ -5,7 +5,7 @@ import json
 from argparse import ArgumentParser
 
 
-class Service:
+class Bot:
     def send(self, chat_id, message, token):
         data = {'chat_id': chat_id, 'text': message}
         json_data = json.dumps(data)
@@ -32,8 +32,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.chat_id and args.message and args.token:
-        service = Service()
-        response = service.send(chat_id=args.chat_id, message=args.message, token=args.token)
+        bot = Bot()
+        response = bot.send(chat_id=args.chat_id, message=args.message, token=args.token)
         print(response)
     else:
         error = {'ok': False, 'error_code': -1, 'description': 'Invalid arguments'}
