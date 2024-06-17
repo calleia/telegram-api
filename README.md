@@ -1,2 +1,2 @@
-# telegram-bot-api
-Python wrapper for Telegram Bot API.
+# telegram-api
+Python wrapper for Telegram API.
