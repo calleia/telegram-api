@@ -2,6 +2,7 @@
 
 import http.client
 import json
+import sys
 from argparse import ArgumentParser
 
 
@@ -31,9 +32,10 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if args.chat_id and args.message and args.token:
+    if args.chat_id and args.token:
+        message = args.message if args.message else sys.stdin.read()
         bot = Bot()
-        response = bot.send(chat_id=args.chat_id, message=args.message, token=args.token)
+        response = bot.send(chat_id=args.chat_id, message=message, token=args.token)
         print(response)
     else:
         error = {'ok': False, 'error_code': -1, 'description': 'Invalid arguments'}
